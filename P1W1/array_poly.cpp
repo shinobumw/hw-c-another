@@ -33,13 +33,12 @@ int main()
 
         if (d != 1) {
             for (int i = count; i >= 0; --i)
-                cout << result[i] << ((i) ? " " : "");
+                cout << result[i] << ((i) ? " " : "\n");
         }
         else {
             for (int i = 2; i >= 0; --i)
-                cout << base[i] << ((i) ? " " : "");
+                cout << base[i] << ((i) ? " " : "\n");
         }
-        cout << endl;
     }
 
     return 0;
