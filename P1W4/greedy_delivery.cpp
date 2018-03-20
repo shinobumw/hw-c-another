@@ -11,11 +11,12 @@ int main()
 		for (i = 0; i < m; ++i) cin >> box[i];
 		sort(box, box + m);
 
-		int sum = 0;
-		for (i = 0; i < m - 1; ++i) {
-			sum += box[i];
+		int sum = 0, temp = 0;
+		for (i = 0; i < m; ++i) {
+			sum += temp * 2 + box[i];
+			temp += box[i];
 		}
-		cout << sum * 2 + box[i] << '\n';
+		cout << sum << '\n';
 	}
 	return 0;	
 }
