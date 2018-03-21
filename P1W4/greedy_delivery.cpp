@@ -6,13 +6,13 @@ int main()
 	int n;
 	cin >> n;
 	while (n--) {
-		int m, box[1000], i;
+		int m, box[1000];
 		cin >> m;
-		for (i = 0; i < m; ++i) cin >> box[i];
+		for (int i = 0; i < m; ++i) cin >> box[i];
 		sort(box, box + m);
 
 		int sum = 0, temp = 0;
-		for (i = 0; i < m; ++i) {
+		for (int i = 0; i < m; ++i) {
 			sum += temp * 2 + box[i];
 			temp += box[i];
 		}
