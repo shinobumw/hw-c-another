@@ -22,7 +22,7 @@ int main()
         for (int i = 0; x[i]; ++i) 
             a = (a * 10 + x[i] - '0') % p;
         for (int i = 0; n[i]; ++i) 
-            b = (b * 10 + n[i] - '0') % (p - 1);
+            b = (b * 10 + n[i] - '0') % (p - 1);    // Fermat’s Little Theorem
         cout << qp(a, b, p) << endl;
     }
     return 0;
