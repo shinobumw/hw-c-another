@@ -10,7 +10,7 @@ int main()
         int book[2][10000], cell[10000];    // book用來記錄是否走過
         for (i = 0; i < n; ++i) cin >> cell[i];
         while (m--) {
-            int direction, p;
+            int dir, p;
             cin >> p >> dir;    // Initial point & Direction
             for (i = 0; i < 2; ++i)
                 for (int j = 0; j < n; ++j)
