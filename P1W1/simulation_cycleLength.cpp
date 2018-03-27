@@ -15,7 +15,7 @@ int main()
         int i;
         for (i = 1; ; ++i) {
             if (book[p] > 0) break;
-            // Record the remainder's position.
+            // Record the position of remainder.
             book[p] = i;
             p = (p * 10) % q;
         }

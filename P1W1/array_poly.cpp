@@ -8,7 +8,7 @@ int main()
 
     while (num--) {
         long base[3], d, expo, temp[2048], result[2048];
-        int count = 2;
+        int count = 2;    // 記錄當前最高次方
         memset(base, 0, sizeof(base));
         memset(temp, 0, sizeof(temp));
         memset(result, 0, sizeof(result));
