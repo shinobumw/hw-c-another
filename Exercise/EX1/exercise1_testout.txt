@@ -1,0 +1,16 @@
+TeST@gMail.com                => valid
+test_two@gmail.com            => valid
+123456@gmail.com              => valid
+test@@gmail.com               => NOT valid
+testgmail.com                 => NOT valid
+test@a@gmail.com              => NOT valid
+--------------------------------
+Sort by Username:
+123456@gmail.com
+TeST@gMail.com
+test_two@gmail.com
+
+Sort by Domain:
+123456@gmail.com
+TeST@gMail.com
+test_two@gmail.com

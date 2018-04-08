@@ -36,7 +36,7 @@ void sol(int n)
     char valid[10]=".@_";    // Valid characters
     int count = 0;
     cin.ignore();
-    for (int i = 0; i < n; ++i) {
+    while (n--) {
         fgets(line, 200, stdin);
         line[strlen(line)-1] = '\0';     // overwrite the end of line.
 
@@ -128,12 +128,11 @@ void sol(int n)
 
 int main()
 {
-    freopen("false.in", "r", stdin);
-    while (1) {
-        int n;
-        cin >> n;
-        if (n == 0) break;
-        sol(n);
-    }
+    freopen("email.in", "r", stdin);
+    int n;
+    cin >> n;
+
+    sol(n);
+
     return 0;
 }

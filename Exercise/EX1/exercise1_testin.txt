@@ -1,0 +1,7 @@
+6
+TeST@gMail.com
+test_two@gmail.com
+123456@gmail.com
+test@@gmail.com
+testgmail.com
+test@a@gmail.com
