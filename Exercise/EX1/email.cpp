@@ -34,21 +34,21 @@ void sol()
 {
     Email addr[100];
     char line[210];
-    char alpha[10]=".@_";    // Valid characters
+    char valid[10]=".@_";    // Valid characters
     int count = 0;
     cin.ignore();
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; ++i) {
         fgets(line, 200, stdin);
-        line[strlen(line)-1] = '\0';     // /overwrite the end of line.
+        line[strlen(line)-1] = '\0';     // overwrite the end of line.
 
         // Check invalid character
         char *s = line;
-        for (; *s; s++) {
-            if (!isalpha(*s) && !isdigit(*s) && strchr(alpha, *s) == NULL)
+        for (; *s; ++s) {
+            if (!isalpha(*s) && !isdigit(*s) && strchr(valid, *s) == NULL)
                 break;
         }
         if (*s) {
-            cout << "\"" << line << "\"" << " has invalid character." << '\n';
+            cout << "\"" << line << "\"" << " includes invalid character." << '\n';
             continue;
         }
 
@@ -65,7 +65,7 @@ void sol()
 
         // Check invalid username
         if (addr[count].name[0] == '\0') {
-            cout << "\"" << line << "\"" << " has invalid username." << '\n';
+            cout << "\"" << line << "\"" << " includes invalid username." << '\n';
             continue;
         }
 
@@ -73,32 +73,28 @@ void sol()
         if (p != NULL) {
             p = strstr(p + 1, ".");
             if  (p != NULL) {
-                cout << "\"" << line << "\"" << " has invalid username." << '\n';
+                cout << "\"" << line << "\"" << " includes invalid username." << '\n';
                 continue;
             }
         }
         
         // Check invalid domain
         if (strchr(addr[count].domain, '@') != NULL) {
-            cout << "\"" << line << "\"" << " has too many @." << '\n';
+            cout << "\"" << line << "\"" << " includes too many @." << '\n';
             continue;
         }
 
         int len_domain = strlen(addr[count].domain);
         if (addr[count].domain[len_domain-1] == '.') {
-            cout << "\"" << line << "\"" << " has invalid domain." << '\n';
+            cout << "\"" << line << "\"" << " includes invalid domain." << '\n';
             continue;
         }
 
         p = strstr(addr[count].domain, ".");
-        if (p == NULL) {
-            cout << "\"" << line << "\"" << " has invalid domain." << '\n';
-            continue;
-        }
-        else if (p != NULL) {
+        if (p != NULL) {
             do {
                 if  (*(p+1) == '.') {
-                    cout << "\"" << line << "\"" << " has invalid domain." << '\n';
+                    cout << "\"" << line << "\"" << " includes invalid domain." << '\n';
                     continue;
                 }
                 p = strstr(p + 1, ".");
@@ -107,23 +103,27 @@ void sol()
 
         count++;
     }
-
+    
     cout << '\n';
+    /*
     cout << "Print valid address:" << '\n';
     for (int i = 0; i < count; i++)
-        printf("%d. %s@%s\n", i, addr[i].name, addr[i].domain);
+        printf("%d. %s@%s\n", i + 1, addr[i].name, addr[i].domain);
     cout << '\n';
-    
+    */
+
+    // Sorted by username
     sort(addr, addr + count, cmpName);
     cout << "(i) Sorted by username:" << '\n';
-    for (int i = 0; i < count; i++)
-        printf("[%s]:[%s]\n", addr[i].name, addr[i].domain);
+    for (int i = 0; i < count; ++i)
+        printf("%s@%s\n", addr[i].name, addr[i].domain);
     cout << '\n';
-
+    // Sorted by domain + username
     sort(addr, addr + count, cmpDomain);
-    cout << "(ii) Sorted by domain:" << '\n';
-    for (int i = 0; i < count; i++)
-        printf("[%s]:[%s]\n", addr[i].name, addr[i].domain);
+    cout << "(ii) Sorted by domain + username:" << '\n';
+    for (int i = 0; i < count; ++i)
+        printf("%s@%s\n", addr[i].name, addr[i].domain);
+    cout << '\n';
 }
 
 int main()
