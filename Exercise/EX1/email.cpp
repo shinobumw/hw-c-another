@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n;
 
 struct Email {
     char name[100];
@@ -30,7 +29,7 @@ bool cmpDomain(Email &p, Email &q)
         return (myStrcmp(p.domain, q.domain) < 0);
 }
 
-void sol() 
+void sol(int n) 
 {
     Email addr[100];
     char line[210];
@@ -111,28 +110,30 @@ void sol()
         printf("%d. %s@%s\n", i + 1, addr[i].name, addr[i].domain);
     cout << '\n';
     */
-
-    // Sorted by username
-    sort(addr, addr + count, cmpName);
-    cout << "(i) Sorted by username:" << '\n';
-    for (int i = 0; i < count; ++i)
-        printf("%s@%s\n", addr[i].name, addr[i].domain);
-    cout << '\n';
-    // Sorted by domain + username
-    sort(addr, addr + count, cmpDomain);
-    cout << "(ii) Sorted by domain + username:" << '\n';
-    for (int i = 0; i < count; ++i)
-        printf("%s@%s\n", addr[i].name, addr[i].domain);
-    cout << '\n';
+    if (count > 0) {
+        // Sorted by username
+        sort(addr, addr + count, cmpName);
+        cout << "(i) Sorted by username:" << '\n';
+        for (int i = 0; i < count; ++i)
+            printf("%s@%s\n", addr[i].name, addr[i].domain);
+        cout << '\n';
+        // Sorted by domain + username
+        sort(addr, addr + count, cmpDomain);
+        cout << "(ii) Sorted by domain + username:" << '\n';
+        for (int i = 0; i < count; ++i)
+            printf("%s@%s\n", addr[i].name, addr[i].domain);
+        cout << '\n';
+    }
 }
 
 int main()
 {
-    freopen("email.in", "r", stdin);
+    freopen("false.in", "r", stdin);
     while (1) {
+        int n;
         cin >> n;
         if (n == 0) break;
-        sol();
+        sol(n);
     }
     return 0;
 }
