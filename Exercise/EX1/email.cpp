@@ -38,7 +38,8 @@ void sol(int n)
     cin.ignore();
     while (n--) {
         fgets(line, 200, stdin);
-        line[strlen(line)-1] = '\0';     // overwrite the end of line.
+        if (line[strlen(line)-1] == '\n')    // overwrite the end of line.
+            line[strlen(line)-1] = '\0';
 
         // Check invalid character
         char *s = line;
@@ -68,14 +69,16 @@ void sol(int n)
             continue;
         }
 
+        bool flag = false;
         p = strstr(addr[count].name, ".");
-        if (p != NULL) {
-            p = strstr(p + 1, ".");
-            if  (p != NULL) {
+        while (p != NULL) {
+            if  (*(p+1) == '.') {
                 cout << "\"" << line << "\"" << " includes invalid username." << '\n';
-                continue;
+                break;
             }
+            p = strstr(p + 1, ".");
         }
+        if (flag) continue;
         
         // Check invalid domain
         if (strchr(addr[count].domain, '@') != NULL) {
@@ -89,16 +92,16 @@ void sol(int n)
             continue;
         }
 
+        flag = false;
         p = strstr(addr[count].domain, ".");
-        if (p != NULL) {
-            do {
-                if  (*(p+1) == '.') {
-                    cout << "\"" << line << "\"" << " includes invalid domain." << '\n';
-                    continue;
-                }
-                p = strstr(p + 1, ".");
-            } while (p != NULL);
+        while (p != NULL) {
+            if  (*(p+1) == '.') {
+                cout << "\"" << line << "\"" << " includes invalid domain." << '\n';
+                break;
+            }
+            p = strstr(p + 1, ".");
         }
+        if (flag) continue;
 
         count++;
     }
