@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct WORK {
+struct Work {
     int time;
     int deadline;
 };
 
-bool cmp(WORK a, WORK b)
+bool cmp(Work a, Work b)
 {
     return a.deadline < b.deadline;
 }
@@ -14,7 +14,7 @@ bool cmp(WORK a, WORK b)
 bool sol()
 {
     int n;
-    WORK job[100];
+    Work job[100];
 
     cin >> n;
     for (int i = 0; i < n; ++i) cin >> job[i].time;
