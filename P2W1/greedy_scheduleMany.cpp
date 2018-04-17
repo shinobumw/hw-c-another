@@ -9,23 +9,20 @@ int main()
 		int n, m;
 		cin >> n >> m;
 
-		int job, t[10];
-		memset(t, 0, sizeof(t));
+		int job;
+		priority_queue<int> machine;
+		for (int i = 0; i < m; ++i) 
+			machine.push(0);
 		for (int i = 0; i < n; ++i) {
 			cin >> job;
-			int min = 0;
-			for (int j = 1; j < m; ++j)
-				if (t[min] > t[j]) 
-					min = j;
-			t[min] += job;
+			int min = machine.top();
+			machine.pop();
+			machine.push(min - job);
 		}
-
-		int max = 0;
-		for (int i = 1; i < m; ++i) {
-			if (t[max] < t[i])
-				max = i;
-		}
-		cout << t[max] << endl;
+		
+		for (int i = 0; i < m - 1; ++i) 
+			machine.pop();
+		cout << -machine.top() << endl;
 	}
 	return 0;
 }
