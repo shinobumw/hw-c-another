@@ -37,11 +37,11 @@ void sol()
 
     int left = sum / deadline;
     int right = n;
-    int mid, key;
+    int mid, pivot;
     while (left < right) {
         mid = (left + right) / 2;
-        key = jobTime(job, n, mid);
-        if (key > deadline)
+        pivot = jobTime(job, n, mid);
+        if (pivot > deadline)
             left = mid + 1;
         else
             right = mid;
