@@ -9,9 +9,9 @@ int dfs(int start, vector<int> road[], int *treasure, bool *visited)
     int max = treasure[start];
     while (!visited[start]) {
         visited[start] = true;
-        for (int i = 0; i < road[start].size(), ++i) {
-            if (!visited[i]) {
-                int tmp = dfs(i, road, treasure, visited);
+        for (auto &it: road[start]) {
+            if (!visited[it]) {
+                int tmp = dfs(it, road, treasure, visited);
                 if (tmp > max) max = tmp;
             }
         }
