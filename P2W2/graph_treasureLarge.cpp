@@ -7,13 +7,12 @@ const int MAX_T = 100;
 int dfs(int start, vector<int> road[], int *treasure, bool *visited)
 {
     int max = treasure[start];
-    while (!visited[start]) {
-        visited[start] = true;
-        for (auto &it: road[start]) {
-            if (!visited[it]) {
-                int tmp = dfs(it, road, treasure, visited);
-                if (tmp > max) max = tmp;
-            }
+    visited[start] = true;
+    for (auto &it: road[start]) {
+        if (!visited[it]) {
+            int tmp = dfs(it, road, treasure, visited);
+            if (tmp > max) 
+                max = tmp;
         }
     }
     return max;
@@ -42,10 +41,14 @@ int main()
 
         bool visited[MAX_N];
         memset(visited, false, sizeof(visited));
-        int max = dfs(start[0], road, treasure, visited);
-        for (int i = 1; i < t; ++i) {
-            int tmp = dfs(start[i], road, treasure, visited);
-            if (tmp > max) max = tmp;
+        int max = 0;
+        for (int i = 0; i < t; ++i) {
+            int k = start[i];
+            if (visited[k])
+                continue;
+            int tmp = dfs(k, road, treasure, visited);
+            if (tmp > max) 
+                max = tmp;
         }
         cout << max << endl;
     }
