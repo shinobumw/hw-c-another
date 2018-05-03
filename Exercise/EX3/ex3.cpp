@@ -9,15 +9,15 @@ struct Record {
     enum {female, male} sex;
 };
 
-void print(Record *arr, int data_size)
+void record_print(Record *arr, int data_size)
 {
     cout << "name=" << (arr+data_size)->name << ", "
          << "age=" << (arr+data_size)->age << ", "
-         << "sex=";
-    if ((arr+data_size)->sex == Record::female)
-        cout << "female\n";
-    else
-        cout << "male\n";
+         << "sex=" << (((arr+data_size)->sex)? "male" : "female") << '\n';
+    // if ((arr+data_size)->sex == Record::female)
+    //     cout << "female\n";
+    // else
+    //     cout << "male\n";
 }
 
 int main()
@@ -65,8 +65,14 @@ int main()
             (arr+data_size)->sex = Record::male;
         // printf("%s\n", token);
         // cout << (arr+data_size)->sex << endl;
+        
+        record_print(arr, data_size);
+    
+        // for (int i = 0; i < data_size + 1; ++i) {
+        //     cout << i << endl;
+        //     record_print(arr, i);
+        // }
 
-        print(arr, data_size);
         data_size++;
     }
     return 0;
