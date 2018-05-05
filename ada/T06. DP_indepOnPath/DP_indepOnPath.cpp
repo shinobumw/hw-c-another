@@ -5,7 +5,7 @@ int main()
 {
     int n;
     while (cin >> n && n) {
-        int d0 = 0, d1 = 0;    // 0: not choose, 1: choose
+        int d0 = 0, d1 = 0;
         int tmp0 = 0, tmp1 = 0;
         while (n--) {
             int w;
