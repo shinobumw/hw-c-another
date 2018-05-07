@@ -22,10 +22,10 @@ int sol(vector<Segment> job, int n)
     map<int, int, greater<int>> m;
     m.insert(make_pair(0, dp[0] = 0));
     for (int i = 1; i <= n; ++i) {
-        auto it = m.lower_bound(job[i].left);
-        dp[i] = max(dp[i - 1], job[i].weight + it->second);
+        auto it = m.lower_bound(job[i].left);    // Find the largest j s.t. job[j].right <= job[i].left
+        dp[i] = max(dp[i - 1], job[i].weight + it->second);    // Recurrence relation
         it = m.insert(m.begin(), {job[i].right, dp[i]});
-        it->second = max(it->second, dp[i]);
+        it->second = max(it->second, dp[i]);    // Choose the bigger one if they have the same key value
     }
 
     return dp[n];

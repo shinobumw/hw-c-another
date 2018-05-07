@@ -21,7 +21,7 @@ int main()
 
         int cnt = 1;
         int idx = activity[0].first;
-        for (int i = 0; i < n; ++i) {
+        for (int i = 1; i < n; ++i) {
             if (activity[i].second < idx)
                 continue;
             idx = activity[i].first;
