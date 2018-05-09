@@ -13,7 +13,6 @@ int score(int lx, int ly)
 
     for (int i = 1; i <= lx; ++i) {
         for (int j = 1; j <= ly; ++j) {
-            int a, b, c;
             if (x[i - 1] == y[j - 1])
                 dp[i][j] = dp[i - 1][j - 1] + 8;
             else {

@@ -35,8 +35,7 @@ void sol()
     // 2nd BFS
     int distance[MAX] = {0};
     int diameter = 0;
-    for (int i = 0; i < n; ++i)
-        visited[i] = false;
+    memset(visited, false, sizeof(visited));
     q.push(v);
     visited[v] = true;
     while (!q.empty()) {
