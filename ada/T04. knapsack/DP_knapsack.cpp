@@ -4,7 +4,7 @@ using namespace std;
 const int MAX_N = 501;
 const int MAX_W = 100001;
 
-int w[MAX_W], v[MAX_N];
+int w[MAX_N], v[MAX_N];
 int dp[MAX_N][MAX_W];
 
 int kp(int n, int weight)
@@ -37,7 +37,7 @@ int main()
             cin >> w[i] >> v[i];
 
         memset(dp, 0, sizeof(dp));
-        cout <<  kp(n, weight) << "\n";
+        cout << kp(n, weight) << "\n";
     }
     return 0;
 }
