@@ -1,5 +1,8 @@
-// if j = i + 1 then dp[i][j] = 0
-// dp[i][j] = min(dp[i][k] + dp[k][j] | for i < j < k) + (p[j] - p[i])
+/**
+ * if j = i + 1 then dp[i][j] = 0
+ * dp[i][j] = min(dp[i][k] + dp[k][j] | for i < j < k) + (p[j] - p[i])
+ */
+
 
 #include <bits/stdc++.h>
 using namespace std;
