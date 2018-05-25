@@ -1,27 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
+int sol(int n)
 {
-    int test_cases;
-    while (scanf("%d", &test_cases) != EOF) {
-        while (test_cases--) {
-            int elements;
-            scanf("%d", &elements);
+    int *num = new int[n+1];
+    for (int i = 1; i <= n; ++i)
+        cin >> num[i];
+    int *prefix_sum = new int[n+1];
+    prefix_sum[0] = 0;
+    for (int i = 1; i <= n; ++i)
+        prefix_sum[i] = prefix_sum[i-1] + num[i];
 
-            int max = 0, total = 0;
-            for (int i = 0; i < elements; i++) {
-                int temp;
-                scanf("%d", &temp);
-
-                total += temp;
-                total = total > 0 ? total : 0;
-                max = total > max ? total : max;
-            }
-
-            printf("%d\n", max);
-        }
+    int *prefix_min = new int[n+1];
+    prefix_min[0] = 0;
+    int ans = 0;
+    for(int i = 1; i <= n; i++) {
+        prefix_min[i] = min(prefix_min[i-1], prefix_sum[i]);
+        ans = max(ans, prefix_sum[i] - prefix_min[i-1]);
     }
 
-    return 0;
+    return ans;
+}
+
+main()
+{
+   int testcase, n;
+   cin >> testcase;
+   while (testcase--) {
+       cin >> n;
+       cout << sol(n) << endl;
+   }
 }
