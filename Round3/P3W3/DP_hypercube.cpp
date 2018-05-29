@@ -7,6 +7,7 @@ int c[MAX], w[MAX];
 
 int dp(int m, int n)
 {
+    // Lazy DP
     if (c[m] >= 0)
         return c[m];
     
@@ -26,7 +27,7 @@ main()
 {
     int n;
     while (cin >> n && n) {
-        int m = 1 << n;
+        int m = 1 << n;    // 2^n
         for (int i = 0; i < m; ++i) {
             cin >> w[i];
             c[i] = -1;
