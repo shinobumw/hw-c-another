@@ -2,8 +2,6 @@
 #include <cstring>
 using namespace std;
 
-#define DEBUG 2
-
 const int MAX_N = 16;
 
 struct Board {
@@ -53,15 +51,7 @@ void nQueens(Board b_origin, int n)
 
 int main()
 {
-    #if DEBUG == 1
     freopen("exe6_sample.in", "r", stdin);
-    #endif
-    #if DEBUG == 2
-    freopen("eq16.in", "r", stdin);
-    #endif
-    #if DEBUG == 3
-    freopen("eq20.in", "r", stdin);
-    #endif
 
     int testcase;
     cin >> testcase;

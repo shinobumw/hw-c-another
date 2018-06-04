@@ -14,6 +14,7 @@ struct Board {
 
 int sol_max, sol_min;
 int weight[MAX_N][MAX_N];
+int row_bound[MAX_N];
 
 void nQueens(Board b_origin, int n)
 {
@@ -68,15 +69,22 @@ int main()
     while (testcase--) {
         int n;
         cin >> n;
-        for (int i = 0; i < n; ++i)
-            for (int j = 0; j < n; ++j)
+        for (int i = 0; i < n; ++i) {
+            int tmp = 0;
+            for (int j = 0; j < n; ++j) {
                 cin >> weight[i][j];
+                tmp = max(tmp, weight[i][j]);
+            }
+            row_bound[i] += tmp;
+        }
 
+        // Initialization
         sol_max = 0;
         sol_min = INT_MAX;
         Board b;
         memset(b.position, 1, sizeof(b.position));
         b.row = b.cost = 0;
+        
         nQueens(b, n);
 
         cout << sol_max << " " << sol_min << endl;
