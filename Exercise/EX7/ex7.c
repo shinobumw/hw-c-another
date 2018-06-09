@@ -51,11 +51,11 @@ void toOne(int row)
     else if (abs(pivot) <= 0.0001) {
         swapRow(row);
         swapTimes++;
-        if (flag)
+        if (flag)    // If the pivot is nonzero
             toOne(row);
     }
 
-    if (flag) {
+    if (flag) {    // If the pivot is nonzero
         determinant *= pivot;
         for (int j = row; j < n + 1 ; ++j)
             augmentedMatrix[row][j] /= pivot;
@@ -72,7 +72,7 @@ void gaussianElimination()
 
     // Row reduction
     while (row < n) {
-        // 判斷是不是那一行的係數全為0
+        // Check whether all elements of the row is zero
         for (j = 0; j < n; ++j) {
             if (abs(augmentedMatrix[row][j]) > 0.0001) {
                 flag = 1;
@@ -101,6 +101,7 @@ void gaussianElimination()
         row++;
     }
 
+    // If the determinant is nonzero
     if (row == n) {
         for (i = 0; i < n; i++) {
             for (j = 0; j < n + 1; j++)
@@ -108,12 +109,16 @@ void gaussianElimination()
             fprintf(fout, "\n");
         }
         fprintf(fout, "\n");
-
-        float x[MAX];
+        
+        // Solution
+        float x[MAX];    
         for (i = 0; i < n; ++i)
             x[i] = augmentedMatrix[i][n];
+
+        // If swapTimes is odd, the determinant is negative.
         if (swapTimes % 2 == 1)
             determinant = -determinant;
+
         fprintf(fout, "Determinant = %f\n", determinant);
         fprintf(fout, "Solution: ");
         for (i = 0; i < n; ++i)
@@ -133,7 +138,7 @@ int main(int argc, char *argv[])
 {
     // File I/O
     // FILE *fin = fopen("./ex7_sample.in", "r");
-    char filename[256];
+    char filename[128];
     strcpy(filename, argv[1]); 
     FILE *fin = fopen(filename, "r");
     assert(fin != NULL);
