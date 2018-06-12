@@ -15,7 +15,8 @@ void readGraph(int n, int m)
     }
     for (int i = 0; i < m; ++i) {
         int from, to;
-        cin >> from >> to;
+        // cin would lead to TLE
+        scanf("%d%d", &from, &to);
         edge[from].push_back(to);
         edge[to].push_back(from);
     }
