@@ -3,9 +3,9 @@
 #include <algorithm>
 using namespace std;
 
-#define DEBUG 2
+#define DEBUG 3
 
-const int MAX_N = 16;
+const int MAX_N = 20;
 
 struct Board {
     int row;    // Record current row
