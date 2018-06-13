@@ -3,23 +3,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 505;
+const int MAXV = 505;
 
-vector<int> edge[MAXN];
-int *mx, *my;
-bool *visit;
+vector<int> edge[MAXV];
+int mx[MAXV], my[MAXV];
+bool visit[MAXV];
 
 bool dfs(int x)
 {
+    visit[x] = true;
     for (auto &y: edge[x]) {
-        if (!visit[y]) {
-            visit[y] = true;
-            if (my[y] == -1 || dfs(my[y])) {
-                // Flip
-                mx[x] = y;
-                my[y] = x;
-                return true;
-            }
+        // Find augmenting path: 
+        // (y is unmatched) or (y's matching point has augmenting path(unmatching point)) 
+        if (my[y] == -1 || !visit[my[y]] && dfs(my[y])) {
+            mx[x] = y;
+            my[y] = x;
+            return true;
         }
     }
     return false;
@@ -34,7 +33,7 @@ main()
     while (testcase--) {
         int nx, ny, m;
         cin >> nx >> ny >> m;
-        
+
         // Initialization
         for (int i = 0; i < nx; ++i)
             edge[i].clear();
@@ -43,16 +42,12 @@ main()
             scanf("%d%d", &a, &b);
             edge[a].push_back(b);
         }
-        visit = new bool[ny];
-        mx = new int[nx];
-        my = new int[ny];
         fill(mx, mx + nx, -1);
         fill(my, my + ny, -1);
 
         int cardinality = 0;
         for (int x = 0; x < nx; ++x) {
-            for (int y = 0; y < ny; ++y)
-                visit[y] = false;
+            fill(visit, visit + ny, false);
             if (dfs(x))
                 cardinality++;
         }
